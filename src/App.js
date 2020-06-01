@@ -34,8 +34,10 @@ class App extends React.Component {
     };
 
     this.setState({
-      list: [...this.state.list, newTask]
+      list: [...this.state.list, newTask],
+      todo: ''
     })
+
   }
 
   changeHandler = event => {
@@ -43,6 +45,13 @@ class App extends React.Component {
       [event.target.name]: event.target.value
     });
   };
+
+  clearTodo = event => {
+    event.preventDefault();
+    this.setState({
+      list: [],
+    })
+  }
 
   render() {
 
@@ -57,7 +66,8 @@ class App extends React.Component {
         <TodoForm
         value={this.state.todo}
         handleChange={this.changeHandler}
-        addTodo={this.addTodo}/>
+        addTodo={this.addTodo}
+        clearTodo={this.clearTodo}/>
       </div>
     );
   }
